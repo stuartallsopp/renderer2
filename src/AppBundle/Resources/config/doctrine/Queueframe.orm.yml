@@ -1,0 +1,63 @@
+AppBundle\Entity\Queueframe:
+    type: entity
+    table: queueframe
+    indexes:
+        QueueId:
+            columns:
+                - QueueId
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        frameno:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FrameNo
+        status:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: Status
+        content:
+            type: blob
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: Content
+        startdatetime:
+            type: datetime
+            nullable: true
+            column: StartDateTime
+        enddatetime:
+            type: datetime
+            nullable: true
+            column: EndDateTime
+        filesize:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FileSize
+    manyToOne:
+        queueid:
+            targetEntity: Queue
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: frames
+            joinColumns:
+                QueueId:
+                    referencedColumnName: Id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

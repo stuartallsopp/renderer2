@@ -1,0 +1,21 @@
+<table class="table table-sm">
+    <tbody>
+    {% for item in queue.sessions %}
+        <tr>
+            <td></td>
+            <td>{{ item.sessionkey }} {% if item.nodename %}<span class="badge badge-pill badge-{% if item.status==3 %}success{% else %}warning{% endif %}">{{ item.nodename }}</span>{% else %}<span class="badge badge-pill badge-danger">None</span>{% endif %}</td>
+            <td class="text-right">
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-secondary" onclick="sendBlendStart({{ item.id }},'upload_list','session')"><i class="fa fa-cogs"></i></button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" onclick="sendBlendStart({{ item.id }},'upload_list','session')" href="#"><i class="fa fa-cogs"></i> Render</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

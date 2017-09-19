@@ -1,0 +1,71 @@
+AppBundle\Entity\Upload:
+    type: entity
+    table: upload
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        filename:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: FileName
+        status:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: Status
+        filesize:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FileSize
+        framestart:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FrameStart
+        frameend:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FrameEnd
+        threads:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: Threads
+        chunkcount:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: ChunkCount
+    oneToMany:
+        sessions:
+             targetEntity: Session
+             mappedBy: parentid
+             cascade: ["persist","merge","remove"]
+             orderBy:
+                id : "asc"
+        chunks:
+             targetEntity: Uploadchunk
+             mappedBy: uploadid
+             cascade: ["persist","merge","remove"]
+             orderBy:
+                chunkno : "asc"
+    lifecycleCallbacks: {  }

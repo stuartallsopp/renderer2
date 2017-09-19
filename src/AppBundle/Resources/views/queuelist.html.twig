@@ -1,0 +1,39 @@
+{% if list|length!=0 %}
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>Source</th>
+            <th class="">Session</th>
+            <th class="text-right">Start</th>
+            <th class="text-right">End</th>
+            <th class="text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td>{{ item.sourcenode }}</td>
+                <td>{{ item.sessionkey }}</td>
+                <td class="text-right">{{ item.framestart }}</td>
+                <td class="text-right">{{ item.frameend }}</td>
+                <td class="text-right">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-secondary" onclick="deleteupload({{ item.id }})"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" onclick="deleteupload({{ item.id }})" href="#"><i class="fa fa-edit"></i> Edit</a>
+                            <a class="dropdown-item" onclick="deleteupload({{ item.id }})" href="#"><i class="fa fa-trash"></i> Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="card-block">
+        <p>Nothing in the queue</p>
+    </div>
+{% endif %}

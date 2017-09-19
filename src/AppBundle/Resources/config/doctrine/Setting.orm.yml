@@ -1,0 +1,36 @@
+AppBundle\Entity\Setting:
+    type: entity
+    table: setting
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        nodename:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: NodeName
+        blendpath:
+            type: string
+            nullable: true
+            length: 1000
+            options:
+                fixed: false
+            column: BlendPath
+        applicationpath:
+            type: string
+            nullable: true
+            length: 1000
+            options:
+                fixed: false
+            column: ApplicationPath
+    lifecycleCallbacks: {  }

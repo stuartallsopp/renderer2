@@ -1,0 +1,15 @@
+<div class="row">
+    {% for item in list %}
+        <div class="col-md-12">
+            <div class="card card-outline-{{ item.colour }}">
+                <div style="padding : 0.37rem 0.62rem;" class="card-header bg-{{ item.colour }} text-white">
+                    <h4 style="margin-bottom: 0;">{{ item.text }}<span class="pull-right"><button onclick="refreshpanel('queue_panel_{{ item.status }}','/queueitem/{{ item.status }}')" class="btn btn-{{ item.colour }}"><i class="fa fa-refresh"></i></button></span></h4>
+                </div>
+                <div id="queue_panel_{{ item.status }}">
+                    {{ render(controller('AppBundle:Default:queuelistbystatus',{'status':item.status})) }}
+                </div>
+            </div>
+            <br/>
+        </div>
+    {% endfor %}
+</div>

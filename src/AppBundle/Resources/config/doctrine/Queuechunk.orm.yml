@@ -1,0 +1,57 @@
+AppBundle\Entity\Queuechunk:
+    type: entity
+    table: queuechunk
+    indexes:
+        QueueId:
+            columns:
+                - QueueId
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        chunkno:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: ChunkNo
+        content:
+            type: blob
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: Content
+        contentbase64:
+            type: string
+            nullable: true
+            length: max
+            options:
+                fixed: false
+            column: ContentBase64
+        instancekey:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: InstanceKey
+    manyToOne:
+        queueid:
+            targetEntity: Queue
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: chunks
+            joinColumns:
+                QueueId:
+                    referencedColumnName: Id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

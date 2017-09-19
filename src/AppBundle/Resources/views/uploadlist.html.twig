@@ -1,0 +1,42 @@
+<table class="table table-sm table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Sessions</th>
+            <th>Frames</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.filename }}</td>
+                <td>{{ item.filesize }}</td>
+                <td>{{ item.framestart }}</td>
+                <td>{{ item.frameend }}</td>
+                <td>
+                    <a class="btn btn-outline-info" href="javascript:void(0)" onclick="viewsession({{ item.id }},'sessions_')">
+                        {{ item.sessions|length }}
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-info" href="javascript:void(0)" onclick="viewsession({{ item.id }},'sessions_')">
+                        {{ item.framecount }}
+                    </a>
+                </td>
+                <td>{{ item.status }}</td>
+                <td>
+                    <button type="button" class="btn btn-success" onclick="publish({{ item.id }})"><i class="fa fa-cloud-upload"></i></button>
+                    <button type="button" class="btn btn-danger" onclick="deleteupload({{ item.id }})"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td></td><td colspan="8" id="sessions_{{ item.id }}"></td></tr>
+        {% endfor %}
+    </tbody>
+</table>

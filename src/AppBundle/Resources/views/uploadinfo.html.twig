@@ -1,0 +1,52 @@
+<form id="file_info_form" action="/uploadinfo/{{ id }}" method="post">
+<div class="modal-header">
+    <h5 class="modal-title">Upload File</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label>Name</label>
+                {{ form_widget(form.filename,{'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Start</label>
+                    {{ form_widget(form.framestart,{'attr':{'class':'form-control'}}) }}
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Start</label>
+                    {{ form_widget(form.frameend,{'attr':{'class':'form-control'}}) }}
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label>Threads</label>
+                    {{ form_widget(form.threads,{'attr':{'class':'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+</form>
+
+<script>
+    $(function() {
+        // bind 'myForm' and provide a simple callback function
+        $('#file_info_form').ajaxForm(function() {
+            $('#file_dialog').modal('hide');
+            reload('upload_list');
+        });
+    });
+</script>

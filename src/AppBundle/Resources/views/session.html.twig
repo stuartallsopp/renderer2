@@ -1,0 +1,31 @@
+<table class="table table-sm">
+    <tbody>
+        {% for item in queue.sessions %}
+        <tr>
+            <td></td>
+            <td><a href="#" data-toggle="tooltip" data-placement="top" title="{{ item.sessionkey }}">
+                    <i class="fa fa-key"></i>
+                </a> {{ item.nodename }}</td>
+            <td>{{ item.framestart }}</td>
+            <td>{{ item.frameend }}</td>
+            <td class="text-right">
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-secondary" onclick="sendBlendStart({{ item.id }},'upload_list','session')"><i class="fa fa-cogs"></i></button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" onclick="sendBlendStart({{ item.id }},'upload_list','session')" href="#"><i class="fa fa-cogs"></i> Render</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

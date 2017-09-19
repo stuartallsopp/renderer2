@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.css') }}" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.css') }}" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}" crossorigin="anonymous">
+        <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-3.2.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/app/js/tether.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/app/js/bootstrap.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/app/js/moment.js') }}"></script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+
+        {% endblock %}
+        {% block ojavascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<div id="slideshow" class="carousel slide" data-ride="false" data-interval="3000">
+    <ol class="carousel-indicators">
+        {% set i=0 %}
+        {% for frame in frames %}
+        <li data-target="#slideshow" data-slide-to="{{ i }}" class="{% if i==0 %}active{% endif %}"></li>
+        {% set i=i+1 %}
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        {% set i=1 %}
+        {% for frame in frames %}
+        <div class="carousel-item {% if i==1 %}active{% endif %}">
+            <img class="d-block img-fluid" style="max-height:350px;" src="/getframe/{{ frame.id }}">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>Frame {{ frame.frameno }}</h3>
+                <p>...</p>
+            </div>
+        </div>
+            {% set i=2 %}
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#slideshow" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slideshow" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

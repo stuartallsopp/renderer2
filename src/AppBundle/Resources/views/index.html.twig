@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"><i class="fa fa-bluetooth"></i> Renderify</a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item nav-hover">
+                        <a class="nav-link" onclick="openFileDialog()" href="#"><i class="fa fa-upload"></i> Upload File</a>
+                    </li>
+                    <li class="nav-item nav-hover">
+                        <a class="nav-link" onclick="reload('upload_list','/list')" href="#"><i class="fa fa-refresh"></i> Console</a>
+                    </li>
+                    <li class="nav-item nav-hover">
+                        <a class="nav-link" onclick="reload('upload_list','/queue')" href="#"><i class="fa fa-list-alt"></i> Queue</a>
+                    </li>
+                    <li class="nav-item nav-hover">
+                        <a class="nav-link" onclick="openSettingsDialog()" href="#"><i class="fa fa-cog"></i> Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="upload_list" style="margin-top:80px;" data-path="/list">
+            {{ render(controller('AppBundle:Default:uploadlist')) }}
+        </div>
+        <div id="slideshow_dialog" class="modal fade">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="frame_list" data-path="/frames/:id">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="file_dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" id="file_upload_content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{%block ojavascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/jquery.form.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/dropzone.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/actioncode.js') }}"></script>
+{% endblock ojavascripts %}

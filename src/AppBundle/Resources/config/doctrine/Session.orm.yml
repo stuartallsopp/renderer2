@@ -1,0 +1,77 @@
+AppBundle\Entity\Session:
+    type: entity
+    table: session
+    indexes:
+        ParentId:
+            columns:
+                - ParentId
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        framestart:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FrameStart
+        frameend:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FrameEnd
+        status:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: Status
+        nodename:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: NodeName
+        sessionkey:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+            column: SessionKey
+        startdatetime:
+            type: datetime
+            nullable: true
+            column: StartDateTime
+        enddatetime:
+            type: datetime
+            nullable: true
+            column: EndDateTime
+    manyToOne:
+        parentid:
+            targetEntity: Upload
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: sessions
+            joinColumns:
+                ParentId:
+                    referencedColumnName: Id
+            orphanRemoval: false
+    oneToMany:
+        frames:
+             targetEntity: Frame
+             mappedBy: sessionid
+             cascade: ["persist","merge","remove"]
+             orderBy:
+                frameno : "asc"
+    lifecycleCallbacks: {  }

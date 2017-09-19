@@ -1,0 +1,43 @@
+AppBundle\Entity\Frame:
+    type: entity
+    table: frame
+    indexes:
+        SessionId:
+            columns:
+                - SessionId
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        frameno:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: FrameNo
+        content:
+            type: blob
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: Content
+    manyToOne:
+        sessionid:
+            targetEntity: Session
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: frames
+            joinColumns:
+                SessionId:
+                    referencedColumnName: Id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

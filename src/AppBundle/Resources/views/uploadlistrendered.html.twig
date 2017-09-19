@@ -1,0 +1,39 @@
+{% if list|length!=0 %}
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>Render</th>
+            <th class="text-right">Start</th>
+            <th class="text-right">End</th>
+            <th class="text-right">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td>{{ item.filename }} <span class="badge badge-pill badge-success">{{ (item.filesize/1024)|number_format(0, '.', ',') }}Mb</span></td>
+                <td class="text-right">{{ item.framestart }}</td>
+                <td class="text-right">{{ item.frameend }}</td>
+                <td class="text-right">
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-secondary" onclick="viewframes({{ item.id }},'upload','frame_list')"><i class="fa fa-film"></i></button>
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" onclick="viewframes({{ item.id }},'upload','frame_list')" href="#"><i class="fa fa-film"></i> Frames</a>
+                            <a class="dropdown-item" onclick="sendcleanup({{ item.id }})" href="#"><i class="fa fa-trash"></i> Clean Up</a>
+                            <a class="dropdown-item" onclick="download({{ item.id }})" href="#"><i class="fa fa-download"></i> Download</a>
+                            <a class="dropdown-item" onclick="deleteupload({{ item.id }})" href="#"><i class="fa fa-trash"></i> Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="card-block">
+        <p>No Files Rendered</p>
+    </div>
+{% endif %}

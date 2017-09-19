@@ -1,0 +1,50 @@
+AppBundle\Entity\Uploadchunk:
+    type: entity
+    table: uploadchunk
+    indexes:
+        QueueId:
+            columns:
+                - UploadId
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: Id
+            generator:
+                strategy: IDENTITY
+    fields:
+        chunkno:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: ChunkNo
+        content:
+            type: blob
+            nullable: true
+            length: null
+            options:
+                fixed: false
+            column: Content
+        contentbase64:
+            type: string
+            nullable: true
+            length: max
+            options:
+                fixed: false
+            column: ContentBase64
+    manyToOne:
+        uploadid:
+            targetEntity: Upload
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: chunks
+            joinColumns:
+                UploadId:
+                    referencedColumnName: Id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,25 @@
+{% if list|length!=0 %}
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>Render</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td><a href="#" onclick="expandcollapsesession({{ item.id }},'publishing','pin_session_list_',this)"><i class="fa fa-plus-square"></i></a> {{ item.filename }} <span class="badge badge-pill badge-success">
+                        {{ item.sessionfilledcount }} of {{ item.sessioncount }}
+                    </span></td>
+            </tr>
+            <tr>
+                <td colspan="1" style="padding:0;" id="pin_session_list_{{ item.id }}"></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="card-block">
+        <p>No Files Publishing</p>
+    </div>
+{% endif %}

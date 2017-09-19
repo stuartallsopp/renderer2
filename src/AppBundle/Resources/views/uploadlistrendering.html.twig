@@ -1,0 +1,23 @@
+{% if list|length!=0 %}
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>Render</th>
+            <th class="text-right">Frames</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in list %}
+            <tr>
+                <td><a href="#" onclick="expandcollapsesession({{ item.id }},'rendering','rin_session_list_',this)"><i class="fa fa-plus-square"></i></a> {{ item.filename }} <span class="badge badge-pill badge-success">{{ (item.filesize/1024)|number_format(0, '.', ',') }}Mb</span></td>
+                <td class="text-right">{{ item.framesgot }}/{{ item.framestotal }}</td>
+            </tr>
+            <tr><td colspan="2" style="padding:0;" id="rin_session_list_{{ item.id }}"></td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="card-block">
+        <p>No Files Rendering</p>
+    </div>
+{% endif %}
